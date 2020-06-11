@@ -1,17 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Appbar from './src/components/Appbar';
-import MemoList from './src/components/MemoList';
-import CircleButton from './src/elements/CircleButton';
+import MemoListScreen from './src/screens/MemoListScreen';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Appbar />
-        <MemoList />
-        <CircleButton>+</CircleButton>
+        <MemoListScreen />
       </View>
     );
   }
@@ -25,6 +23,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 78,
   },
-
-
 });
