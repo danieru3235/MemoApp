@@ -1,28 +1,48 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import * as Font from 'expo-font';
+import { createIconSet } from '@expo/vector-icons'
+import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
+
+const CustomIcon = createIconSet({
+  pencil: '\uf5ae',
+  plus: '\uf067',
+}, 'FontAwsome');
 
 class CircleButton extends React.Component {
-  render() {
-    const { style, color } = this.props;
+state = {
+  fontLoaded: false,
+}
 
-    let bgColor = '#E31676';
-    let textColor = '#fff';
+async componentWillMount() {
+await Font.loadAsync({
+    FontAwsome: fontAwsome,
+  });
 
-    if (color === 'white') {
-      bgColor = '#fff';
-      textColor = '#E31676';
-    }
+  this.setState({ fontLoaded: true });
+}
 
-    return (
-      <View style={[styles.Button, style, { backgroundColor: bgColor }]}>
-        <View>
-          <Text style={[styles.ButtonTitle, { color: textColor }]}>
-            {this.props.children}
-          </Text>
-        </View>
-      </View>
-    );
+render() {
+  const { name, style, color } = this.props;
+
+  let bgColor = '#E31676';
+  let textColor = '#fff';
+
+  if (color === 'white') {
+    bgColor = '#fff';
+    textColor = '#E31676';
   }
+
+  return (
+    <View style={[styles.Button, style, { backgroundColor: bgColor }]}>
+      {
+          this.state.fontLoaded ? (
+            <CustomIcon name={name} style={[styles.ButtonTitle, { color: textColor }]} />
+          ) : null
+        }
+    </View>
+  );
+}
 }
 
 const styles = StyleSheet.create({
@@ -42,7 +62,8 @@ const styles = StyleSheet.create({
   },
 
   ButtonTitle: {
-    fontSize: 32,
+    fontFamily: 'FontAwsome',
+    fontSize: 24,
     lineHeight: 32,
   },
 
