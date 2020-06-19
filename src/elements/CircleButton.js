@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import * as Font from 'expo-font';
-import { createIconSet } from '@expo/vector-icons'
+import { createIconSet } from '@expo/vector-icons';
 import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
 
 const CustomIcon = createIconSet({
   pencil: '\uf5ae',
   plus: '\uf067',
+  check: '\uf00c',
 }, 'FontAwsome');
 
 class CircleButton extends React.Component {
